@@ -75,3 +75,37 @@ async function handleTargetInput() {
         isTranslating = false;
     }
 }
+
+let selectionTimer;
+
+async function handleTextSelection(textarea) {
+    clearTimeout(selectionTimer);
+    
+    selectionTimer = setTimeout(async () => {
+        const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+        const translationDiv = document.getElementById(textarea.id === 'sourceText' 
+            ? 'sourceSelectionTranslation' 
+            : 'targetSelectionTranslation');
+        
+        if (!selectedText.trim()) {
+            translationDiv.style.display = 'none';
+            return;
+        }
+
+        try {
+            const sourceLanguage = textarea.id === 'sourceText' 
+                ? document.getElementById('sourceLanguage').value 
+                : document.getElementById('targetLanguage').value;
+            const targetLanguage = textarea.id === 'sourceText'
+                ? document.getElementById('targetLanguage').value
+                : document.getElementById('sourceLanguage').value;
+
+            const translation = await translateText(selectedText, sourceLanguage, targetLanguage);
+            translationDiv.textContent = `${selectedText}\n→\n${translation}`;
+            translationDiv.style.display = 'block';
+        } catch (error) {
+            console.error('선택 텍스트 번역 중 오류:', error);
+            translationDiv.style.display = 'none';
+        }
+    }, 300);
+}

@@ -92,6 +92,25 @@
         flex: 0 1 auto;
       }
     }
+
+    .textarea-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .selection-translation {
+      min-height: 20px;
+      padding: 10px;
+      font-size: 14px;
+      color: #666;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      display: none;
+      white-space: pre-line;
+      margin-top: 5px;
+    }
   </style>
   <script src="google_translate.js"></script>
   <script src="languages.js"></script>
@@ -125,7 +144,7 @@
       <option value="ar">아랍어</option>
       <option value="hi">힌디어</option>
       <option value="pt">포르투갈어</option>
-      <option value="nl">네덜란드��</option>
+      <option value="nl">네덜란드어</option>
       <option value="pl">폴란드어</option>
       <option value="tr">터키어</option>
       <option value="uk">우크라이나어</option>
@@ -156,8 +175,18 @@
     </select>
   </div>
   <div class="container">
-    <textarea id="sourceText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleSourceInput()"></textarea>
-    <textarea id="targetText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleTargetInput()"></textarea>
+    <div class="textarea-container">
+      <textarea id="sourceText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleSourceInput()"
+        onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)"
+        onkeyup="handleTextSelection(this)"></textarea>
+      <div id="sourceSelectionTranslation" class="selection-translation"></div>
+    </div>
+    <div class="textarea-container">
+      <textarea id="targetText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleTargetInput()"
+        onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)"
+        onkeyup="handleTextSelection(this)"></textarea>
+      <div id="targetSelectionTranslation" class="selection-translation"></div>
+    </div>
   </div>
   <div style="display: flex; justify-content: flex-end;">
     <button id="installButton" style="display: none; margin-top: -10px;">데스크톱 앱으로 설치</button>
