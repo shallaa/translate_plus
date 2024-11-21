@@ -1,6 +1,8 @@
 let translationTimer;
 let deferredPrompt;
 
+const APP_VERSION = '1.0.1';
+
 function debounceTranslation(fn, delay = 500) {
   return function (...args) {
     clearTimeout(translationTimer);
@@ -247,5 +249,26 @@ window.addEventListener('appinstalled', () => {
   const installButton = document.getElementById('installButton');
   if (installButton) {
     installButton.style.display = 'none';
+  }
+});
+
+window.addEventListener('load', async () => {
+  if ('serviceWorker' in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register('service-worker.js');
+      
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            if (confirm('새로운 버전이 있습니다. 업데이트하시겠습니까?')) {
+              window.location.reload();
+            }
+          }
+        });
+      });
+    } catch (error) {
+      console.error('서비스 워커 등록 실패:', error);
+    }
   }
 });
