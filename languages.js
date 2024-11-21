@@ -14,6 +14,10 @@ const debouncedHandleTargetInput = debounceTranslation(handleTargetInput);
 const translations = {
   ko: {
     placeholder: '번역할 텍스트를 입력하세요',
+    installButton: {
+      desktop: '데스크톱 앱으로 설치',
+      mobile: '모바일 앱으로 설치'
+    },
     languages: {
       ko: '한국어',
       en: '영어',
@@ -40,6 +44,10 @@ const translations = {
   },
   en: {
     placeholder: 'Enter text to translate',
+    installButton: {
+      desktop: 'Install as Desktop App',
+      mobile: 'Install as Mobile App'
+    },
     languages: {
       ko: 'Korean',
       en: 'English',
@@ -66,6 +74,10 @@ const translations = {
   },
   ja: {
     placeholder: '翻訳するテキストを入力してください',
+    installButton: {
+      desktop: 'デスクトップアプリとしてインストール',
+      mobile: 'モバイルアプリとしてインストール'
+    },
     languages: {
       ko: '韓国語',
       en: '英語',
@@ -92,6 +104,10 @@ const translations = {
   },
   zh: {
     placeholder: '请输入要翻译的文本',
+    installButton: {
+      desktop: '安装为桌面应用',
+      mobile: '安装为移动应用'
+    },
     languages: {
       ko: '韩语',
       en: '英语',
@@ -166,6 +182,7 @@ function setLanguage(lang) {
   });
 
   updateQueryString(lang);
+  updateInstallButtonText(lang);
 }
 
 function initLanguage() {
@@ -197,13 +214,21 @@ function isMobileDevice() {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+function updateInstallButtonText(lang) {
+  const installButton = document.getElementById('installButton');
+  if (installButton) {
+    const type = isMobileDevice() ? 'mobile' : 'desktop';
+    installButton.textContent = translations[lang].installButton[type];
+  }
+}
+
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
   const installButton = document.getElementById('installButton');
   if (installButton) {
     installButton.style.display = 'block';
-    installButton.textContent = isMobileDevice() ? '모바일 앱으로 설치' : '데스크톱 앱으로 설치';
+    updateInstallButtonText(document.documentElement.lang);
     installButton.addEventListener('click', async () => {
       if (deferredPrompt) {
         deferredPrompt.prompt();
