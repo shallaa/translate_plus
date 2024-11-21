@@ -102,14 +102,12 @@
 
     .selection-translation {
       min-height: 20px;
-      padding: 10px;
+      padding: 5px;
       font-size: 14px;
       color: #666;
       background-color: #f5f5f5;
       border-radius: 4px;
       display: none;
-      white-space: pre-line;
-      margin-top: 5px;
     }
   </style>
   <script src="google_translate.js"></script>
@@ -177,14 +175,14 @@
   <div class="container">
     <div class="textarea-container">
       <textarea id="sourceText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleSourceInput()"
-        onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)"
-        onkeyup="handleTextSelection(this)"></textarea>
+        onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)" onkeyup="handleTextSelection(this)"
+        ontouchend="handleTextSelection(this)"></textarea>
       <div id="sourceSelectionTranslation" class="selection-translation"></div>
     </div>
     <div class="textarea-container">
       <textarea id="targetText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleTargetInput()"
-        onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)"
-        onkeyup="handleTextSelection(this)"></textarea>
+        onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)" onkeyup="handleTextSelection(this)"
+        ontouchend="handleTextSelection(this)"></textarea>
       <div id="targetSelectionTranslation" class="selection-translation"></div>
     </div>
   </div>
