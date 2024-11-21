@@ -1,0 +1,43 @@
+{
+  "name": "Google Translate Plus",
+  "short_name": "Translate+",
+  "description": "Enhanced Google Translate",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#4285f4",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "./",
+      "accept": {
+        "text/*": [
+          ".txt"
+        ]
+      }
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Translate Plus",
+      "url": "./",
+      "icons": [
+        {
+          "src": "favicon.svg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
