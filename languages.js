@@ -16,6 +16,7 @@ const debouncedHandleTargetInput = debounceTranslation(handleTargetInput);
 const translations = {
   ko: {
     placeholder: '번역할 텍스트를 입력하세요',
+    clearButton: '초기화',
     installButton: {
       desktop: '데스크톱 앱으로 설치',
       mobile: '모바일 앱으로 설치'
@@ -46,6 +47,7 @@ const translations = {
   },
   en: {
     placeholder: 'Enter text to translate',
+    clearButton: 'Clear',
     installButton: {
       desktop: 'Install as Desktop App',
       mobile: 'Install as Mobile App'
@@ -76,6 +78,7 @@ const translations = {
   },
   ja: {
     placeholder: '翻訳するテキストを入力してください',
+    clearButton: 'クリア',
     installButton: {
       desktop: 'デスクトップアプリとしてインストール',
       mobile: 'モバイルアプリとしてインストール'
@@ -106,6 +109,7 @@ const translations = {
   },
   zh: {
     placeholder: '请输入要翻译的文本',
+    clearButton: '清除',
     installButton: {
       desktop: '安装为桌面应用',
       mobile: '安装为移动应用'
@@ -185,6 +189,11 @@ function setLanguage(lang) {
 
   updateQueryString(lang);
   updateInstallButtonText(lang);
+  
+  const clearButton = document.querySelector('button[onclick="clearTextareas()"]');
+  if (clearButton) {
+    clearButton.textContent = translations[lang].clearButton;
+  }
 }
 
 function initLanguage() {
@@ -272,3 +281,10 @@ window.addEventListener('load', async () => {
     }
   }
 });
+
+function clearTextareas() {
+  document.getElementById('sourceText').value = '';
+  document.getElementById('targetText').value = '';
+  document.getElementById('sourceSelectionTranslation').style.display = 'none';
+  document.getElementById('targetSelectionTranslation').style.display = 'none';
+}

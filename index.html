@@ -65,16 +65,17 @@
       font-size: 16px;
       flex: 1;
       min-width: 120px;
+      background-color: white;
+      color: black;
     }
 
-    button {
+    #installButton {
       background-color: #4285f4;
       color: white;
       border: none;
-      cursor: pointer;
     }
 
-    button:hover {
+    #installButton:hover {
       background-color: #357abd;
     }
 
@@ -171,6 +172,7 @@
       <option value="uk">우크라이나어</option>
       <option value="eo">에스페란토어</option>
     </select>
+    <button onclick="clearTextareas()">초기화</button>
   </div>
   <div class="container">
     <div class="textarea-container">
