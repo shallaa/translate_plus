@@ -1,7 +1,7 @@
 {
   "name": "Google Translate Plus",
   "short_name": "Translate+",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Enhanced Google Translate",
   "start_url": "./",
   "scope": "./",

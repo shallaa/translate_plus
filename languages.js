@@ -1,7 +1,7 @@
 let translationTimer;
 let deferredPrompt;
 
-const APP_VERSION = '1.0.1';
+const APP_VERSION = '1.0.3';
 
 function debounceTranslation(fn, delay = 500) {
   return function (...args) {
