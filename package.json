@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "tsc": "tsc --noEmit",
+    "test:compile": "tsc --noEmit && playwright test"
   },
   "keywords": [],
   "author": "",

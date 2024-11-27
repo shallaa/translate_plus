@@ -24,7 +24,7 @@ test.describe('번역 기능 테스트', () => {
     
     // 소스 언어를 영어로 변경
     await page.selectOption('#sourceLanguage', 'en');
-    // 타겟 언어를 ���본어로 변경
+    // 타겟 언어를 일본어로 변경
     await page.selectOption('#targetLanguage', 'ja');
     
     await page.fill('#sourceText', 'Hello');
@@ -37,8 +37,10 @@ test.describe('번역 기능 테스트', () => {
   test('초기화 버튼 테스트', async ({ page }) => {
     await page.goto('/');
     
+    await page.waitForLoadState('networkidle');
+    
     await page.fill('#sourceText', 'Test text');
-    await page.click('button:has-text("초기화")');
+    await page.click('[data-testid="clear-button"]');
     
     const sourceText = await page.inputValue('#sourceText');
     const targetText = await page.inputValue('#targetText');

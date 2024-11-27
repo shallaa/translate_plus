@@ -193,6 +193,7 @@ function setLanguage(lang) {
   const clearButton = document.querySelector('button[onclick="clearTextareas()"]');
   if (clearButton) {
     clearButton.textContent = translations[lang].clearButton;
+    clearButton.setAttribute('data-testid', 'clear-button');
   }
 }
 
