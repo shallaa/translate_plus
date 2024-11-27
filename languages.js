@@ -1,7 +1,7 @@
 let translationTimer;
 let deferredPrompt;
 
-const APP_VERSION = '1.0.3';
+const APP_VERSION = '1.0.4';
 
 function debounceTranslation(fn, delay = 500) {
   return function (...args) {
@@ -212,8 +212,6 @@ function initLanguage() {
   
   window.isLanguageInitialized = true;
 }
-
-window.defaultLang = initLanguage();
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initLanguage);

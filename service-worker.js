@@ -1,11 +1,12 @@
-const CACHE_NAME = 'translate-plus-v1.0.3';
+const CACHE_NAME = 'translate-plus-v1.0.4';
 const ASSETS = [
   './',
   './index.html',
   './google_translate.js',
   './languages.js',
   './favicon.svg',
-  './manifest.json'
+  './manifest.json',
+  './screenshot1.png'
 ];
 
 self.addEventListener('install', (event) => {
