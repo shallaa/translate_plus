@@ -11,11 +11,13 @@ export default defineConfig({
     command: 'npx http-server . -p 3000',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
-    timeout: 5000,
+    timeout: 15000,
   },
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
+    actionTimeout: 15000,
+    navigationTimeout: 15000,
   },
   projects: [
     {

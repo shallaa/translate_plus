@@ -4,11 +4,15 @@ test.describe('번역 기능 테스트', () => {
   test('기본 번역 테스트', async ({ page }) => {
     await page.goto('/');
     
+    // 소스 언어를 영어로, 타겟 언어를 한국어로 설정
+    await page.selectOption('#sourceLanguage', 'en');
+    await page.selectOption('#targetLanguage', 'ko');
+    
     // 소스 텍스트 입력
     await page.fill('#sourceText', 'Hello');
     
-    // 번역 결과 대기
-    await page.waitForTimeout(1000);
+    // 번역 결과 대기 (API 응답을 기다리기 위해 시간 증가)
+    await page.waitForTimeout(2000);
     
     // 번역 결과 확인
     const targetText = await page.inputValue('#targetText');
@@ -20,7 +24,7 @@ test.describe('번역 기능 테스트', () => {
     
     // 소스 언어를 영어로 변경
     await page.selectOption('#sourceLanguage', 'en');
-    // 타겟 언어를 일본어로 변경
+    // 타겟 언어를 ���본어로 변경
     await page.selectOption('#targetLanguage', 'ja');
     
     await page.fill('#sourceText', 'Hello');
