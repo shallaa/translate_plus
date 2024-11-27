@@ -1,0 +1,18 @@
+{
+  "name": "translate_plus",
+  "version": "1.0.0",
+  "description": "실시간 양방향 번역을 지원하는 웹 애플리케이션입니다.",
+  "main": "google_translate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "http-server": "^14.1.1"
+  }
+}
