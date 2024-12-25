@@ -1,7 +1,7 @@
 {
   "name": "Google Translate Plus",
   "short_name": "Translate+",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "두 언어의 입력창에서 실시간 번역을 지원하는 애플리케이션. 새로운 언어를 배우고자 하는 학습자들에게 양방향 번역 학습의 기회를 제공합니다.",
   "categories": [
     "utilities",

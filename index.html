@@ -110,6 +110,47 @@
       border-radius: 4px;
       display: none;
     }
+
+    .copy-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .copy-button:hover {
+      opacity: 1;
+    }
+
+    .textarea-container {
+      position: relative;
+    }
+
+    .copy-text.copied {
+      animation: fade 1s;
+    }
+
+    @keyframes fade {
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
   </style>
   <script src="google_translate.js"></script>
   <script src="languages.js"></script>
@@ -180,12 +221,18 @@
         onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)" onkeyup="handleTextSelection(this)"
         ontouchend="handleTextSelection(this)"></textarea>
       <div id="sourceSelectionTranslation" class="selection-translation"></div>
+      <button class="copy-button" onclick="copyText('sourceText')">
+        <span class="copy-text">복사하기</span>
+      </button>
     </div>
     <div class="textarea-container">
       <textarea id="targetText" placeholder="번역할 텍스트를 입력하세요" oninput="debouncedHandleTargetInput()"
         onselect="handleTextSelection(this)" onmouseup="handleTextSelection(this)" onkeyup="handleTextSelection(this)"
         ontouchend="handleTextSelection(this)"></textarea>
       <div id="targetSelectionTranslation" class="selection-translation"></div>
+      <button class="copy-button" onclick="copyText('targetText')">
+        <span class="copy-text">복사하기</span>
+      </button>
     </div>
   </div>
   <div style="display: flex; justify-content: flex-end;">

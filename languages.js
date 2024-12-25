@@ -39,7 +39,7 @@ const translations = {
       hi: '힌디어',
       pt: '포르투갈어',
       nl: '네덜란드어',
-      pl: '폴란드어',
+      pl: '��란드어',
       tr: '터키어',
       uk: '우크라이나어',
       eo: '에스페란토어'
@@ -92,7 +92,7 @@ const translations = {
       vi: 'ベトナム語',
       th: 'タイ語',
       es: 'スペイン語',
-      fr: 'フランス語',
+      fr: '��ランス語',
       de: 'ドイツ語',
       ru: 'ロシア語',
       it: 'イタリア語',
@@ -286,4 +286,28 @@ function clearTextareas() {
   document.getElementById('targetText').value = '';
   document.getElementById('sourceSelectionTranslation').style.display = 'none';
   document.getElementById('targetSelectionTranslation').style.display = 'none';
+}
+
+async function copyText(elementId) {
+  const textarea = document.getElementById(elementId);
+  const button = textarea.parentElement.querySelector('.copy-button .copy-text');
+  const originalText = button.textContent;
+  
+  try {
+    await navigator.clipboard.writeText(textarea.value);
+    button.textContent = '복사됨!';
+    button.classList.add('copied');
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.classList.remove('copied');
+    }, 2000);
+  } catch (err) {
+    console.error('클립보드 복사 실패:', err);
+    button.textContent = '복사 실패';
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+    }, 2000);
+  }
 }
